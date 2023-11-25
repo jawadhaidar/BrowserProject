@@ -4,6 +4,7 @@ Created on Sat Nov 25 09:17:59 2023
 
 @author: mcc
 """
+import requests
 
 class Browser():
     def __init__(self):
@@ -16,7 +17,7 @@ class Browser():
         #add it to the list 
         self.order_list.append(tabTitle)
         #add it to the database 
-        self.database[tabTitle]={"parentURL":tabTitle}
+        self.database[tabTitle]={"parentURL":tabURL}
         
        
     def closeTab(self):
@@ -33,6 +34,26 @@ class Browser():
             self.order_list.pop()
             
     def switchTab(self):
+        index=int(input("put the  index of tab: "))
+        #TODO: you can include the nested tab 
+        if index!='':
+            #display content of chosen title
+            keyIndex=self.order_list[index]
+            urlIndexed=self.database[keyIndex]['parentURL']
+            print(f'urlIndexed {urlIndexed}')
+            
+        else:
+
+            keyIndex=self.order_list[-1]
+            urlIndexed=self.database[keyIndex]['parentURL']
+            #remove last openned tab
+            pass
+        # create request
+        x = requests.get(urlIndexed)
+        #convert request to string datatype
+        text = x.text 
+        print(text)
+    def diplayAllTabs(self):
         pass
     def openNestedTab(self):
         pass
@@ -50,9 +71,11 @@ if __name__ == '__main__':
     "test areana"
     chrome=Browser()
     chrome.openTab()
-    chrome.openTab()
-    chrome.closeTab()
-    print(chrome.database,chrome.order_list)
+    chrome.switchTab()
+    
+
+
+    
     
     
 
