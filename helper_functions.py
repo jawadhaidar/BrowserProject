@@ -5,11 +5,14 @@ Created on Sat Nov 25 09:17:59 2023
 @author: mcc
 """
 import requests
+from sorter import*
+import json
 
 class Browser():
     def __init__(self):
         self.database={} 
         self.order_list=[]
+        self.exit=False
         
     def openTab(self):
         tabTitle=input("please add the tab title ")
@@ -55,11 +58,11 @@ class Browser():
         print(text)
     def diplayAllTabs(self):
         #loop parents
-        for key,value in self.database:
+        for key,value in self.database.items():
             #loop children
-            for ch_key,ch_value in value:
+            for ch_key,ch_value in value.items():
                 if ch_key=="parentURL":
-                    print("key")
+                    print(f"{key}")
                 else: 
                     print(f'    {ch_key}')
                 
@@ -74,22 +77,43 @@ class Browser():
         self.database[keyindex][title]=url
         #add it to the ordered list 
         self.order_list.append(title)
+        
               
     def sortAllTabs(self):
-        pass
+        print(f'self.order_list before {self.order_list}')
+        selectionSort(self.order_list)
+        print(f'self.order_list after {self.order_list}')
+        
     def saveTabs(self):
-        pass
+        # Convert and write JSON object to file
+        with open(r"C:\Users\mcc\Desktop\my folders\SeFactory\BrowserProject\database.json", "w") as outfile: 
+            json.dump(self.database, outfile)
+        
+
     def importTabs(self):
-        pass
+        # JSON file
+        f = open (r"C:\Users\mcc\Desktop\my folders\SeFactory\BrowserProject\database.json", "r")
+         
+        # Reading from file
+        self.database = json.loads(f.read())
+        print(self.database)
+        
+        
     def exitBrowser(self):
-        pass
+        self.exit=True
+    
+    
+
+
         
     
 if __name__ == '__main__':
     "test areana"
     chrome=Browser()
     chrome.openTab()
-    chrome.switchTab()
+    chrome.saveTabs()
+    chrome.importTabs()
+    
     
 
 
