@@ -66,10 +66,15 @@ class Browser():
     def openNestedTab(self):
         #index of parent tab is different than the index of ordered list tab 
         #you should choose index from the dictionary
-        index=int("please input the index of the parent")
-        keyindex=list(self.database)[index]
-        
-        
+        #TODO: you can do a loop for several children for same parent
+        index=int(input("please input the index of the parent"))
+        title=input("enter the title of the nested tab")
+        url=input("enter the url")
+        keyindex=list(self.database)[index] #key of parent
+        self.database[keyindex][title]=url
+        #add it to the ordered list 
+        self.order_list.append(title)
+              
     def sortAllTabs(self):
         pass
     def saveTabs(self):
