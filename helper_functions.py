@@ -54,9 +54,22 @@ class Browser():
         text = x.text 
         print(text)
     def diplayAllTabs(self):
-        pass
+        #loop parents
+        for key,value in self.database:
+            #loop children
+            for ch_key,ch_value in value:
+                if ch_key=="parentURL":
+                    print("key")
+                else: 
+                    print(f'    {ch_key}')
+                
     def openNestedTab(self):
-        pass
+        #index of parent tab is different than the index of ordered list tab 
+        #you should choose index from the dictionary
+        index=int("please input the index of the parent")
+        keyindex=list(self.database)[index]
+        
+        
     def sortAllTabs(self):
         pass
     def saveTabs(self):
