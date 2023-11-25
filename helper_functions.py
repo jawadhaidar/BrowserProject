@@ -20,7 +20,18 @@ class Browser():
         
        
     def closeTab(self):
-        pass
+        tabTitle2close=input("please add the tab title to close ")
+        if tabTitle2close!='':
+            #remove from list
+            self.order_list.remove(tabTitle2close)
+            #remove from database
+            del self.database[tabTitle2close]
+        else:
+            #remove last
+            self.database.popitem()
+            #remove last from list
+            self.order_list.pop()
+            
     def switchTab(self):
         pass
     def openNestedTab(self):
@@ -39,3 +50,11 @@ if __name__ == '__main__':
     "test areana"
     chrome=Browser()
     chrome.openTab()
+    chrome.openTab()
+    chrome.closeTab()
+    print(chrome.database,chrome.order_list)
+    
+    
+
+    
+
