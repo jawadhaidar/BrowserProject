@@ -6,12 +6,19 @@ Created on Sat Nov 25 09:17:59 2023
 """
 
 class Browser():
-    def __init__(self,database,order_list):
-        self.database=database 
-        self.order_list=order_list
+    def __init__(self):
+        self.database={} 
+        self.order_list=[]
         
     def openTab(self):
-        pass
+        tabTitle=input("please add the tab title ")
+        tabURL=input("please add the tab URL ")
+        #add it to the list 
+        self.order_list.append(tabTitle)
+        #add it to the database 
+        self.database[tabTitle]={"parentURL":tabTitle}
+        
+       
     def closeTab(self):
         pass
     def switchTab(self):
@@ -30,4 +37,5 @@ class Browser():
     
 if __name__ == '__main__':
     "test areana"
-    pass
+    chrome=Browser()
+    chrome.openTab()
