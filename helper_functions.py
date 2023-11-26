@@ -99,9 +99,9 @@ class Browser():
         
     def diplayAllTabs(self):
         #loop parents
-        for key,value in self.database.items():
+        for key,value in self.database.items():# O(n) n is the number of databse keys
             #loop children
-            for ch_key,ch_value in value.items():
+            for ch_key,ch_value in value.items(): # O(m) m is the number of value ch_keys
                 if ch_key=="parentURL":
                     print(f"{key}")
                 else: 
