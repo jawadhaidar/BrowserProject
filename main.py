@@ -23,7 +23,7 @@ while(not chrome.exit):
     elif inputuser=="8":
         chrome.importTabs()
     elif inputuser=="9":
-        chrome.exit()
+        chrome.exitBrowser()
         
         
         

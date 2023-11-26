@@ -61,42 +61,41 @@ class Browser():
                         break
                         
     
-            
-            
-        #search inside the nested dictionaries
         
-        #     #remove from list
-        #     self.order_list.remove(tabTitle2close)
-        #     #remove from database
-        #     del self.database[tabTitle2close]
-        # else:
-        #     #remove last
-        #     self.database.popitem() #does not have to be the last in the database
-        #     #remove last from list
-        #     self.order_list.pop()
             
     def switchTab(self):#print content
-        index=int(input("put the  index of tab: "))
+        index=input("put the  index of tab acc to orderedlist: ") #acc to list
         #TODO: you can include the nested tab 
         #it can be a parent
         #it can be a child
-        if index!='':
-            #display content of chosen title
-            keyIndex=self.order_list[index]
-            urlIndexed=self.database[keyIndex]['parentURL']
-            print(f'urlIndexed {urlIndexed}')
-            
+        
+        if index=='':
+            tabTitle2display=self.order_list[-1] #choose last title
         else:
-
-            keyIndex=self.order_list[-1]
-            urlIndexed=self.database[keyIndex]['parentURL']
-            #remove last openned tab
-            pass
+            tabTitle2display=self.order_list[int(index)] #get the title corr to the index in the list
+        
+        
+        #is it a parent 
+        if tabTitle2display in self.database.keys():
+            #display content of chosen title
+            urlIndexed=self.database[tabTitle2display]['parentURL']
+            
+        else: #it is a child
+            for key,value in self.database.items():
+                
+                #loop children    
+                for ch_key,ch_value in value.items():
+                    if ch_key==tabTitle2display:
+                        urlIndexed=self.database[key][tabTitle2display] 
+                        break
+        
         # create request
         x = requests.get(urlIndexed)
         #convert request to string datatype
         text = x.text 
         print(text)
+        
+        
     def diplayAllTabs(self):
         #loop parents
         for key,value in self.database.items():
