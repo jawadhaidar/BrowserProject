@@ -8,11 +8,21 @@ import requests
 from sorter import*
 import json
 
+#do helper function for request
+#helper for loop
+
 class Browser():
     def __init__(self):
         self.database={} 
         self.order_list=[]
         self.exit=False
+        
+    def _html(self,url):
+        # create request
+        x = requests.get(url)
+        #convert request to string datatype
+        text = x.text 
+        return  text
         
     def openTab(self):
         tabTitle=input("please add the tab title ")
