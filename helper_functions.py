@@ -105,7 +105,7 @@ class Browser():
             urlIndexed=self.database[tabTitle2display]['parentURL']
             
         else: #it is a child
-            parent=self._search4ParenttTab(self,tabTitle2display) #check who is the parent
+            parent=self._search4ParenttTab(tabTitle2display) #check who is the parent
             urlIndexed=self.database[parent][tabTitle2display]
 
             # for key,value in self.database.items(): # O(n) n is the number of databse keys
