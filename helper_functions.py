@@ -21,7 +21,7 @@ class Browser():
             
             #loop children    
             for ch_key,ch_value in value.items(): # O(m) m is the number of value ch_keys
-                if ch_key==tabTitle2close:
+                if ch_key==soughtTab:
                     parent=key
                     break
         return parent
