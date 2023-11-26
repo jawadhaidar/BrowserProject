@@ -27,7 +27,7 @@ class Browser():
         return parent
         
         
-    def _html(url):
+    def _html(self,url):
         # create request
         x = requests.get(url)
         #convert request to string datatype
