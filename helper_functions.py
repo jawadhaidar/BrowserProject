@@ -36,11 +36,11 @@ class Browser():
             
         
         #is it a parent 
-        if tabTitle2close in self.database.keys():
+        if tabTitle2close in self.database.keys():# search algo depends how they implemented it: o(n)
             #parent
             #remove it and its children from ordered list
             self.order_list.remove(tabTitle2close)
-            for key,value in self.database[tabTitle2close].items():
+            for key,value in self.database[tabTitle2close].items(): # O(n) n is the number of databse keys
                 if key!="parentURL":
                     self.order_list.remove(key)
         
@@ -52,10 +52,11 @@ class Browser():
             self.order_list.remove(tabTitle2close)
             #search inside each parent to remove it 
             #now remove from dictionary
-            for key,value in self.database.items():
+            #O(mn)
+            for key,value in self.database.items(): # O(n) n is the number of databse keys
                 
                 #loop children    
-                for ch_key,ch_value in value.items():
+                for ch_key,ch_value in value.items(): # O(m) m is the number of value ch_keys
                     if ch_key==tabTitle2close:
                         del self.database[key][tabTitle2close] 
                         break
@@ -140,7 +141,8 @@ class Browser():
 
     def importTabs(self):
         # JSON file
-        #I AM ASSUMING THAT WE ARE IMPORTING THE SAME FILE THAT WE SAVED
+        #I AM ASSUMING THAT WE ARE IMPORTING THE SAME FILE THAT WE SAVED OR A FILE THAT THE USER CREATED
+        #IN THIS WAY THE USER EITHER USES OPEN TABS OPTION TO FILL OR FILLS THE JSON THEN IMPORTS IT
         f = open (r"C:\Users\mcc\Desktop\my folders\SeFactory\BrowserProject\database.json", "r")
          
         # Reading from file
