@@ -17,7 +17,7 @@ class Browser():
         self.order_list=[]
         self.exit=False
         
-    def _html(self,url):
+    def _html(url):
         # create request
         x = requests.get(url)
         #convert request to string datatype
