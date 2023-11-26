@@ -122,7 +122,7 @@ class Browser():
               
     def sortAllTabs(self):
         print(f'self.order_list before {self.order_list}')
-        selectionSort(self.order_list)
+        selectionSort(self.order_list) #O(n^2)
         print(f'self.order_list after {self.order_list}')
         
     def saveTabs(self):
