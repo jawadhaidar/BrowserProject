@@ -137,9 +137,7 @@ class Browser():
         #since my database have the same information except for the content
         #add content only for parents (or it will get messy)
         for key,value in self.database.items(): #O(n)
-            x = requests.get(self.database[key]["parentURL"])
-            #convert request to string datatype
-            text = x.text
+            text=self._html(self.database[key]["parentURL"])
             self.database[key]["content"]=text
             
         with open(r"C:\Users\mcc\Desktop\my folders\SeFactory\BrowserProject\database.json", "w") as outfile: 
