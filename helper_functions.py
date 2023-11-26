@@ -77,15 +77,15 @@ class Browser():
         
         
         #is it a parent 
-        if tabTitle2display in self.database.keys():
+        if tabTitle2display in self.database.keys(): # search algo depends how they implemented it: o(n)
             #display content of chosen title
             urlIndexed=self.database[tabTitle2display]['parentURL']
             
         else: #it is a child
-            for key,value in self.database.items():
+            for key,value in self.database.items(): # O(n) n is the number of databse keys
                 
                 #loop children    
-                for ch_key,ch_value in value.items():
+                for ch_key,ch_value in value.items():  # O(m) m is the number of value ch_keys
                     if ch_key==tabTitle2display:
                         urlIndexed=self.database[key][tabTitle2display] 
                         break
