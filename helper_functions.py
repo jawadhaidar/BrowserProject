@@ -68,18 +68,21 @@ class Browser():
             del self.database[tabTitle2close]
         else:#not parent
             
-            #remove it from list 
-            self.order_list.remove(tabTitle2close)
+            
+            self.order_list.remove(tabTitle2close) #remove it from list 
             #search inside each parent to remove it 
             #now remove from dictionary
             #O(mn)
-            for key,value in self.database.items(): # O(n) n is the number of databse keys
+            parent=self._search4ParenttTab(self,tabTitle2close) #check who is the parent
+            del self.database[parent][tabTitle2close] #remove children from dictionary
+            
+            # for key,value in self.database.items(): # O(n) n is the number of databse keys
                 
-                #loop children    
-                for ch_key,ch_value in value.items(): # O(m) m is the number of value ch_keys
-                    if ch_key==tabTitle2close:
-                        del self.database[key][tabTitle2close] 
-                        break
+            #     #loop children    
+            #     for ch_key,ch_value in value.items(): # O(m) m is the number of value ch_keys
+            #         if ch_key==tabTitle2close:
+            #             del self.database[key][tabTitle2close] 
+            #             break
                         
     
         
