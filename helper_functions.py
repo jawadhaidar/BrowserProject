@@ -100,10 +100,7 @@ class Browser():
                         urlIndexed=self.database[key][tabTitle2display] 
                         break
         
-        # create request
-        x = requests.get(urlIndexed)
-        #convert request to string datatype
-        text = x.text 
+        text=self._html(urlIndexed)
         print(text)
         
         
