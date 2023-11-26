@@ -37,10 +37,6 @@ def selectionSort(list1): #O(n^2)
       if compare_alpha(list1[i],list1[minIndex]): #O(1), is the line that specifies the order
         minIndex=i
     #swap the two elements
-    temp=list1[border] #O(1)
-    list1[border]=list1[minIndex]
-    list1[minIndex]=temp
-
-    # list1[border],list1[minIndex]=list1[minIndex],list1[border]
+    list1[border],list1[minIndex]=list1[minIndex],list1[border]
 
     border=border+1
