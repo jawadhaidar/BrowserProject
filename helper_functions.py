@@ -61,7 +61,7 @@ class Browser():
             #remove it and its children from ordered list
             self.order_list.remove(tabTitle2close)
             for key,value in self.database[tabTitle2close].items(): # O(n) n is the number of databse keys
-                if key!="parentURL":
+                if key!="parentURL" and key!="content":
                     self.order_list.remove(key)
         
             #remove them from dictionary
