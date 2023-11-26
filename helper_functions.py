@@ -16,14 +16,15 @@ class Browser():
         self.database={} 
         self.order_list=[]
         self.exit=False
-    def _search4tab(self,soughtTab):
+    def _search4ParenttTab(self,soughtTab):
         for key,value in self.database.items(): # O(n) n is the number of databse keys
             
             #loop children    
             for ch_key,ch_value in value.items(): # O(m) m is the number of value ch_keys
                 if ch_key==tabTitle2close:
-                    del self.database[key][tabTitle2close] 
+                    parent=key
                     break
+        return parent
         
         
     def _html(url):
