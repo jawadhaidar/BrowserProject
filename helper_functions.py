@@ -21,24 +21,65 @@ class Browser():
         self.order_list.append(tabTitle)
         #add it to the database 
         self.database[tabTitle]={"parentURL":tabURL}
+        #better to store {T:{}}
         
        
     def closeTab(self):
         tabTitle2close=input("please add the tab title to close ")
-        if tabTitle2close!='':
-            #remove from list
-            self.order_list.remove(tabTitle2close)
-            #remove from database
-            del self.database[tabTitle2close]
-        else:
-            #remove last
-            self.database.popitem()
-            #remove last from list
-            self.order_list.pop()
+        #it might be a parent 
+        #it might be a child
+        #last in ordered list might not be the last in dictionary (due to nested)
+        #I WILL ASSUME THAT CLOSING A PARENT WILL CLOSE ITS CHILDREN 
+        #WHILE CLOSING A CHILDREN WILL NOT CLOSE THE PARENT 
+        if tabTitle2close=='':
+            tabTitle2close=self.order_list[-1] #if empty take it from the last element of list
             
-    def switchTab(self):
+        
+        #is it a parent 
+        if tabTitle2close in self.database.keys():
+            #parent
+            #remove it and its children from ordered list
+            self.order_list.remove(tabTitle2close)
+            for key,value in self.database[tabTitle2close].items():
+                if key!="parentURL":
+                    self.order_list.remove(key)
+        
+            #remove them from dictionary
+            del self.database[tabTitle2close]
+        else:#not parent
+            
+            #remove it from list 
+            self.order_list.remove(tabTitle2close)
+            #search inside each parent to remove it 
+            #now remove from dictionary
+            for key,value in self.database.items():
+                
+                #loop children    
+                for ch_key,ch_value in value.items():
+                    if ch_key==tabTitle2close:
+                        del self.database[key][tabTitle2close] 
+                        break
+                        
+    
+            
+            
+        #search inside the nested dictionaries
+        
+        #     #remove from list
+        #     self.order_list.remove(tabTitle2close)
+        #     #remove from database
+        #     del self.database[tabTitle2close]
+        # else:
+        #     #remove last
+        #     self.database.popitem() #does not have to be the last in the database
+        #     #remove last from list
+        #     self.order_list.pop()
+            
+    def switchTab(self):#print content
         index=int(input("put the  index of tab: "))
         #TODO: you can include the nested tab 
+        #it can be a parent
+        #it can be a child
         if index!='':
             #display content of chosen title
             keyIndex=self.order_list[index]
