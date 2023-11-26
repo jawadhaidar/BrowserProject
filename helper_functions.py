@@ -129,7 +129,7 @@ class Browser():
         # Convert and write JSON object to file
         #since my database have the same information except for the content
         #add content only for parents (or it will get messy)
-        for key,value in self.database.items():
+        for key,value in self.database.items(): #O(n)
             x = requests.get(self.database[key]["parentURL"])
             #convert request to string datatype
             text = x.text
