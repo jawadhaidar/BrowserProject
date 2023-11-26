@@ -126,12 +126,21 @@ class Browser():
         
     def saveTabs(self):
         # Convert and write JSON object to file
+        #since my database have the same information except for the content
+        #add content only for parents (or it will get messy)
+        for key,value in self.database.items():
+            x = requests.get(self.database[key]["parentURL"])
+            #convert request to string datatype
+            text = x.text
+            self.database[key]["content"]=text
+            
         with open(r"C:\Users\mcc\Desktop\my folders\SeFactory\BrowserProject\database.json", "w") as outfile: 
             json.dump(self.database, outfile)
         
 
     def importTabs(self):
         # JSON file
+        #I AM ASSUMING THAT WE ARE IMPORTING THE SAME FILE THAT WE SAVED
         f = open (r"C:\Users\mcc\Desktop\my folders\SeFactory\BrowserProject\database.json", "r")
          
         # Reading from file
