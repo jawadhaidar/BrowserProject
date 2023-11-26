@@ -112,7 +112,7 @@ class Browser():
             for ch_key,ch_value in value.items(): # O(m) m is the number of value ch_keys
                 if ch_key=="parentURL":
                     print(f"{key}")
-                else: 
+                elif ch_key!="content": 
                     print(f'    {ch_key}')
                 
     def openNestedTab(self):
