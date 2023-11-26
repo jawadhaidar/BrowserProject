@@ -76,16 +76,8 @@ class Browser():
             parent=self._search4ParenttTab(tabTitle2close) #check who is the parent
             del self.database[parent][tabTitle2close] #remove children from dictionary
             
-            # for key,value in self.database.items(): # O(n) n is the number of databse keys
-                
-            #     #loop children    
-            #     for ch_key,ch_value in value.items(): # O(m) m is the number of value ch_keys
-            #         if ch_key==tabTitle2close:
-            #             del self.database[key][tabTitle2close] 
-            #             break
+
                         
-    
-        
             
     def switchTab(self):#print content
         index=input("put the  index of tab acc to orderedlist: ") #acc to list
@@ -108,13 +100,6 @@ class Browser():
             parent=self._search4ParenttTab(tabTitle2display) #check who is the parent
             urlIndexed=self.database[parent][tabTitle2display]
 
-            # for key,value in self.database.items(): # O(n) n is the number of databse keys
-                
-            #     #loop children    
-            #     for ch_key,ch_value in value.items():  # O(m) m is the number of value ch_keys
-            #         if ch_key==tabTitle2display:
-            #             urlIndexed=self.database[key][tabTitle2display] 
-            #             break
         
         text=self._html(urlIndexed)
         print(text)
